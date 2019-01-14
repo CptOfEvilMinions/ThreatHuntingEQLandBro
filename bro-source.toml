@@ -15,212 +15,131 @@ destination_port = 'dest_port'
 source_address = 'src_addr'
 source_port = 'src_port'
 
+#######################################
+# Conn
+#######################################
 [events.bro_conn]
 filter = "conn_state"
 
 [events.bro_conn.mapping]
-proto = 'proto'
+conn_proto = 'proto'
 conn_state = 'conn_state'
-local_orig = 'local_orig'
-local_resp = 'local_resp'
+conn_local_orig = 'local_orig'
+conn_local_resp = 'local_resp'
 
+#######################################
+# DNS
+#######################################
 [events.bro_dns]
 filter = 'rcode_name'
 
 [events.bro_dns.mapping]
-proto = 'proto'
-rcode = 'rcode'
-rcode_name = 'rcode_name'
-query = 'query'
+dns_proto = 'proto'
+dns_rcode = 'rcode'
+dns_rcode_name = 'rcode_name'
+dns_query = 'query'
+dns_answers = 'answers'
+dns_ttl = 'TTLs'
 
-#[events.ssl]
-#filter = 'cipher'
+#######################################
+# HTTP
+#######################################
+[events.bro_http]
+filter = 'status_code'
 
-#[events.ssl.mapping]
-#tls_version = 'version'
-
-# [events.http]
-# filter = 'status_code'
-
-# [events.http.mapping]
-# version = 'version'
-# request_body_len = 'request_body_len'
-# response_body_len = 'response_body_len'
-#mime_type = 'resp_mime_types'
-
-
-# [events.image_load]
-# filter = "EventId == 7"
-
-# [events.image_load.mapping]
-# image_path = "ImageLoaded"
-# image_name = "baseName(ImageLoaded)"
-
-# [events.network]
-# filter = "EventId == 3"
-
-# [events.network.enum.subtype]
-# incoming = "Initiated == 'false'"
-# outgoing = "Initiated == 'true'"
-
-# [events.network.mapping]
-# destination_address = "DestinationIp"
-# destination_port = "DestinationPort"
-# protocol = "Protocol"
-# source_address = "SourceIp"
-# source_port = "SourcePort"
-# # total_in_bytes - not provided by sysmon
-# # total_out_bytes - not provided by sysmon
-
-# [events.file]
-# filter = "EventId in (11, 15)"
-
-# [events.file.mapping]
-# file_name = "baseName(TargetFilename)"
-# file_path = "TargetFilename"
-
-# [events.process]
-# filter = "EventId in (1, 5)"
-
-# [events.process.enum.subtype]
-# create = "EventId == 1"
-# terminate = "EventId == 5"
-
-# [events.process.mapping]
-# command_line = "CommandLine"
-# logon_id = "number(LogonId)"
-# parent_process_name = "baseName(ParentImage)"
-# parent_process_path = "ParentImage"
-# ppid = "number(ParentProcessId)"
-# unique_ppid = "ParentProcessGuid"
+[events.bro_http.mapping]
+http_version = 'version'
+http_method = 'method'
+http_host = 'host'
+http_uri = 'uri'
+http_referrer = 'referrer'
+http_user_agent = 'user_agent'
+http_status_code = 'status_code'
+http_status_msg = 'status_msg'
+http_username = 'username'
+http_password = 'password'
+http_proxied = 'proxied'
+http_cookie_vars = 'cookie_vars'
+http_uri_vars = 'uri_vars'
+http_mime_type = 'resp_mime_types'
 
 
-# [events.registry]
-# filter = "EventId in (12, 13, 14)"
+[events.bro_ssl]
+filter = 'cipher'
 
-# # sysmon can't distinguish between registry data types
-# # [events.registry.enum.registry_type]
+[events.bro_ssl.mapping]
+ssl_version = 'version'
+ssl_cipher = 'cipher'
+ssl_curve = 'curve'
+ssl_server_name = 'server_name'
+ssl_session_id = 'session_id'
+ssl_established = 'established'
 
-# [events.registry.mapping]
-# # registry_data - missing from sysmon
-# registry_key = "dirName(TargetObject)"
-# registry_value = "baseName(TargetObject)"
-# registry_path = "TargetObject"
+[events.bro_rdp]
+filter = 'keyboard_layout'
 
-# [events.registry.enum.hive]
-# hklm = 'TargetObject == "HKLM\\*"'
-# hku = 'TargetObject == "HKU\\*"'orig_h'
+[events.bro_rdp.mapping]
+rdp_cookie = 'cookie'
+rdp_result = 'result'
+rdp_security_protocol = 'security_protocol'
+rdp_keyboard_layout = 'keyboard_layout'
+rdp_client_build = 'client_build'
+rdp_client_name = 'client_name'
+rdp_cert_type = 'cert_type'
+rdp_cert_count = 'cert_count'
+rdp_cert_permanent = 'cert_permanent'
+rdp_encryption_level = 'encryption_level'
+rdp_encryption_method = 'encryption_method'
+rdp_ssl = 'ssl'
 
-# [events.image_load]
-# filter = "EventId == 7"
+[events.bro_weird]
+filter = 'name'
 
-# [events.image_load.mapping]
-# image_path = "ImageLoaded"
-# image_name = "baseName(ImageLoaded)"
+[events.bro_weird.mapping]
+weird_name = 'name'
+weird_addl = 'addl'
+weird_peer = 'peer'
+weird_identifier = 'identifier'
 
-# [events.network]
-# filter = "EventId == 3"
+[events.bro_x509]
+filter = 'certificate.serial'
 
-# [events.network.enum.subtype]
-# incoming = "Initiated == 'false'"
-# outgoing = "Initiated == 'true'"
+[events.bro_x509.mapping]
+x509_certificate = 'certificate'
+x509_extensions = 'extensions'
+x509_san = 'san'
+x509_basic_constraints = 'basic_constraints'
+x509_logcert = 'logcert'
 
-# [events.network.mapping]
-# destination_address = "DestinationIp"
-# destination_port = "DestinationPort"
-# protocol = "Protocol"
-# source_address = "SourceIp"
-# source_port = "SourcePort"
-# # total_in_bytes - not provided by sysmon
-# # total_out_bytes - not provided by sysmon
+[events.bro_files]
+filter = 'mime_type'
 
-# [events.file]
-# filter = "EventId in (11, 15)"
+[events.bro_files.mapping]
+files_tx_hosts = 'tx_hosts'
+files_rx_hosts = 'rx_hosts'
+files_conn_uids = 'conn_uids'
+files_source = 'source'
+files_mime_type = 'mime_type'
+files_filename = 'filename'
+files_duration = 'duration'
+files_md5 = 'md5'
+files_sha1 = 'sha1'
+files_sha256 = 'sha256'
+files_x509 = 'x509'
 
-# [events.file.mapping]
-# file_name = "baseName(TargetFilename)"
-# file_path = "TargetFilename"
+[events.bro_ssh]
+filter = 'auth_success'
 
-# [events.process]
-# filter = "EventId in (1, 5)"
-
-# [events.process.enum.subtype]
-# create = "EventId == 1"
-# terminate = "EventId == 5"
-
-# [events.process.mapping]
-# command_line = "CommandLine"
-# logon_id = "number(LogonId)"
-# parent_process_name = "baseName(ParentImage)"
-# parent_process_path = "ParentImage"
-# ppid = "number(ParentProcessId)"
-# unique_ppid = "ParentProcessGuid"
-
-
-# [events.registry]
-# filter = "EventId in (12, 13, 14)"
-
-# # sysmon can't distinguish between registry data types
-# # [events.registry.enum.registry_type]
-
-# [events.registry.mapping]
-# # registry_data - missing from sysmon
-# registry_key = "dirName(TargetObject)"
-# registry_value = "baseName(TargetObject)"
-# registry_path = "TargetObject"
-
-# [events.registry.enum.hive]
-# hklm = 'TargetObject == "HKLM\\*"'
-# hku = 'TargetObject == "HKU\\*"'%
-
-
-
-
-
-# name = "bro"
-# os_types = ["none"]
-# strict = true
-# domain = "Bro events"
-# filter_query = true
-
-# [timestamp]
-# field = "ts"
-# format = "%Y-%m-%d %H:%M:%S.%f"
-
-# [fields.mapping]
-# ts = "ts"
-# uid = "uid"
-# destination_address = "id.orig_h"
-# destination_port = "id.orig_p"
-# source_address = "id.resp_h"
-# source_port = "id.resp_p"
-
-# [events.bro_conn]
-# filter = "proto == 'tcp'"
-
-# [events.bro_conn.mapping]
-# proto = 'proto'
-# conn_state = 'conn_state'
-# local_orig = 'local_orig'
-# local_resp = 'local_resp'
-
-# [events.bro_dns]
-# filter = "proto == 'udp'"
-
-# [events.bro_dns.mapping]
-# protocol = 'proto'
-# rcode = 'rcode'
-
-# [events.bro_ssl]
-# filter = 'cipher'
-
-# [events.ssl.mapping]
-# tls_version = 'version'
-
-# [events.http]
-# filter = 'status_code'
-
-# [events.http.mapping]
-# version = 'version'
-# request_body_len = 'request_body_len'
-# response_body_len = 'response_body_len'
+[events.bro_ssh.mapping]
+ssh_version = 'version'
+ssh_auth_success = 'auth_success'
+ssh_auth_attempts = 'auth_attempts'
+ssh_direction = 'direction'
+ssh_client = 'client'
+ssh_server = 'server'
+ssh_cipher_alg = 'cipher_alg'
+ssh_mac_alg = 'mac_alg'
+ssh_compression_alg = 'compression_alg'
+ssh_kex_alg = 'kex_alg'
+ssh_host_key_alg = 'host_key_alg'
+ssh_host_key = 'host_key'
