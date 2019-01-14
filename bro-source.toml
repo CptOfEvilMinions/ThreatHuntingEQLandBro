@@ -1,5 +1,4 @@
 name = "Bro events"
-os_types = ["none"]
 strict = true
 domain = "bro-domain"
 filter_query = true
@@ -11,10 +10,10 @@ format = "%Y-%m-%d %H:%M:%S.%f"
 [fields.mapping]
 ts = "ts"
 uid = "uid"
-destination_address = "id.orig_h"
-#destination_port = "id.orig_p"
-#source_address = "id.resp_h"
-#source_port = "id.resp_p"
+destination_address = 'dest_addr'
+destination_port = 'dest_port'
+source_address = 'src_addr'
+source_port = 'src_port'
 
 [events.bro_conn]
 filter = "conn_state"
@@ -32,6 +31,7 @@ filter = 'rcode_name'
 proto = 'proto'
 rcode = 'rcode'
 rcode_name = 'rcode_name'
+query = 'query'
 
 #[events.ssl]
 #filter = 'cipher'

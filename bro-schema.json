@@ -7,7 +7,6 @@
     "registry",
     "security",
     "image_load",
-    "conn",
     "bro_conn",
     "bro_dns",
     "bro_ssl",

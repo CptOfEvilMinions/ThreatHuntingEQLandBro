@@ -3,11 +3,10 @@ fields = [
   # Common Fields
   "ts",
   "uid",
-  "destination_address"
-  #"id.orig_h",
-  #"id.orig_p",
-  #"id.resp_h",
-  #"id.resp_p"
+  "destination_address",
+  "destination_port",
+  "source_address",
+  "source_port"
 ]
 
 [events.bro_conn]
@@ -22,6 +21,7 @@ fields = [
 [events.bro_dns]
 fields = [
   "proto",
+  "query",
   "trans_id",
   "rcode",
   "rcode_name",
