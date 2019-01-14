@@ -1,0 +1,21 @@
+{
+  "event_types": [
+    "dns",
+    "file",
+    "network",
+    "process",
+    "registry",
+    "security",
+    "image_load",
+    "conn",
+    "bro_conn",
+    "bro_dns",
+    "bro_ssl",
+    "bro_http",
+    "bro_rdp",
+    "bro_weird",
+    "bro_x509",
+    "bro_files",
+    "bro_ssh"
+  ]
+}

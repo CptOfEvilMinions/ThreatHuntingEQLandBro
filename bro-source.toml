@@ -1,0 +1,226 @@
+name = "Bro events"
+os_types = ["none"]
+strict = true
+domain = "bro-domain"
+filter_query = true
+
+[timestamp]
+field = "ts"
+format = "%Y-%m-%d %H:%M:%S.%f"
+
+[fields.mapping]
+ts = "ts"
+uid = "uid"
+destination_address = "id.orig_h"
+#destination_port = "id.orig_p"
+#source_address = "id.resp_h"
+#source_port = "id.resp_p"
+
+[events.bro_conn]
+filter = "conn_state"
+
+[events.bro_conn.mapping]
+proto = 'proto'
+conn_state = 'conn_state'
+local_orig = 'local_orig'
+local_resp = 'local_resp'
+
+[events.bro_dns]
+filter = 'rcode_name'
+
+[events.bro_dns.mapping]
+proto = 'proto'
+rcode = 'rcode'
+rcode_name = 'rcode_name'
+
+#[events.ssl]
+#filter = 'cipher'
+
+#[events.ssl.mapping]
+#tls_version = 'version'
+
+# [events.http]
+# filter = 'status_code'
+
+# [events.http.mapping]
+# version = 'version'
+# request_body_len = 'request_body_len'
+# response_body_len = 'response_body_len'
+#mime_type = 'resp_mime_types'
+
+
+# [events.image_load]
+# filter = "EventId == 7"
+
+# [events.image_load.mapping]
+# image_path = "ImageLoaded"
+# image_name = "baseName(ImageLoaded)"
+
+# [events.network]
+# filter = "EventId == 3"
+
+# [events.network.enum.subtype]
+# incoming = "Initiated == 'false'"
+# outgoing = "Initiated == 'true'"
+
+# [events.network.mapping]
+# destination_address = "DestinationIp"
+# destination_port = "DestinationPort"
+# protocol = "Protocol"
+# source_address = "SourceIp"
+# source_port = "SourcePort"
+# # total_in_bytes - not provided by sysmon
+# # total_out_bytes - not provided by sysmon
+
+# [events.file]
+# filter = "EventId in (11, 15)"
+
+# [events.file.mapping]
+# file_name = "baseName(TargetFilename)"
+# file_path = "TargetFilename"
+
+# [events.process]
+# filter = "EventId in (1, 5)"
+
+# [events.process.enum.subtype]
+# create = "EventId == 1"
+# terminate = "EventId == 5"
+
+# [events.process.mapping]
+# command_line = "CommandLine"
+# logon_id = "number(LogonId)"
+# parent_process_name = "baseName(ParentImage)"
+# parent_process_path = "ParentImage"
+# ppid = "number(ParentProcessId)"
+# unique_ppid = "ParentProcessGuid"
+
+
+# [events.registry]
+# filter = "EventId in (12, 13, 14)"
+
+# # sysmon can't distinguish between registry data types
+# # [events.registry.enum.registry_type]
+
+# [events.registry.mapping]
+# # registry_data - missing from sysmon
+# registry_key = "dirName(TargetObject)"
+# registry_value = "baseName(TargetObject)"
+# registry_path = "TargetObject"
+
+# [events.registry.enum.hive]
+# hklm = 'TargetObject == "HKLM\\*"'
+# hku = 'TargetObject == "HKU\\*"'orig_h'
+
+# [events.image_load]
+# filter = "EventId == 7"
+
+# [events.image_load.mapping]
+# image_path = "ImageLoaded"
+# image_name = "baseName(ImageLoaded)"
+
+# [events.network]
+# filter = "EventId == 3"
+
+# [events.network.enum.subtype]
+# incoming = "Initiated == 'false'"
+# outgoing = "Initiated == 'true'"
+
+# [events.network.mapping]
+# destination_address = "DestinationIp"
+# destination_port = "DestinationPort"
+# protocol = "Protocol"
+# source_address = "SourceIp"
+# source_port = "SourcePort"
+# # total_in_bytes - not provided by sysmon
+# # total_out_bytes - not provided by sysmon
+
+# [events.file]
+# filter = "EventId in (11, 15)"
+
+# [events.file.mapping]
+# file_name = "baseName(TargetFilename)"
+# file_path = "TargetFilename"
+
+# [events.process]
+# filter = "EventId in (1, 5)"
+
+# [events.process.enum.subtype]
+# create = "EventId == 1"
+# terminate = "EventId == 5"
+
+# [events.process.mapping]
+# command_line = "CommandLine"
+# logon_id = "number(LogonId)"
+# parent_process_name = "baseName(ParentImage)"
+# parent_process_path = "ParentImage"
+# ppid = "number(ParentProcessId)"
+# unique_ppid = "ParentProcessGuid"
+
+
+# [events.registry]
+# filter = "EventId in (12, 13, 14)"
+
+# # sysmon can't distinguish between registry data types
+# # [events.registry.enum.registry_type]
+
+# [events.registry.mapping]
+# # registry_data - missing from sysmon
+# registry_key = "dirName(TargetObject)"
+# registry_value = "baseName(TargetObject)"
+# registry_path = "TargetObject"
+
+# [events.registry.enum.hive]
+# hklm = 'TargetObject == "HKLM\\*"'
+# hku = 'TargetObject == "HKU\\*"'%
+
+
+
+
+
+# name = "bro"
+# os_types = ["none"]
+# strict = true
+# domain = "Bro events"
+# filter_query = true
+
+# [timestamp]
+# field = "ts"
+# format = "%Y-%m-%d %H:%M:%S.%f"
+
+# [fields.mapping]
+# ts = "ts"
+# uid = "uid"
+# destination_address = "id.orig_h"
+# destination_port = "id.orig_p"
+# source_address = "id.resp_h"
+# source_port = "id.resp_p"
+
+# [events.bro_conn]
+# filter = "proto == 'tcp'"
+
+# [events.bro_conn.mapping]
+# proto = 'proto'
+# conn_state = 'conn_state'
+# local_orig = 'local_orig'
+# local_resp = 'local_resp'
+
+# [events.bro_dns]
+# filter = "proto == 'udp'"
+
+# [events.bro_dns.mapping]
+# protocol = 'proto'
+# rcode = 'rcode'
+
+# [events.bro_ssl]
+# filter = 'cipher'
+
+# [events.ssl.mapping]
+# tls_version = 'version'
+
+# [events.http]
+# filter = 'status_code'
+
+# [events.http.mapping]
+# version = 'version'
+# request_body_len = 'request_body_len'
+# response_body_len = 'response_body_len'
