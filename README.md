@@ -42,8 +42,12 @@ Version `0.6.2` of EQL does not parse BRO keys with dots like `id.orig_h` or `id
 1. Count the connections in the conn.log
     1. `eqllib query -s "Bro events" -f conn.jsonl "bro_conn where true | count"`
     1. ![EQL connection count](.img/eql_conn_count.png)
+1. Connections with a destination IP addr
+    1. `eqllib query -s "Bro events" -f conn.jsonl "bro_conn where destination_address == '217.20.147.1'`
+    1. ![EQL connection count](.img/eql_conn_addr.png)
 1. Count the connections with a destination IP addr
-    1. `eqllib query -s "Bro events" -f conn.jsonl "bro_conn where destination_address == '8.8.8.8' | count"`
+    1. `eqllib query -s "Bro events" -f conn.jsonl "bro_conn where destination_address == '217.20.147.1' | count"`
+    1. ![EQL connection count](.img/eql_conn_addr2.png)
 1. Unique DNS queries
     1. `eqllib query -s "Bro events" -f dns.jsonl "bro_dns where true | unique"`
     1. ![EQL DNS unique queries](.img/eql_dns_query.png)
