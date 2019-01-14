@@ -1,3 +1,6 @@
+####################################################################################
+# Bro log files: https://www.zeek.org/sphinx/script-reference/log-files.html
+####################################################################################
 name = "bro-domain"
 fields = [
   # Common Fields
@@ -9,218 +12,227 @@ fields = [
   "source_port"
 ]
 
+# https://www.zeek.org/sphinx/scripts/base/protocols/conn/main.bro.html#type-Conn::Info
 [events.bro_conn]
 fields = [
   "proto",
+  "service",
+  "duration",
+  "orig_bytes",
+  "resp_bytes",
   "conn_state",
   "local_orig",
   "local_resp",
-  "missed_bytes"
+  "missed_bytes",
+  "history",
+  "orig_pkts",
+  "orig_ip_bytes",
+  "resp_pkts",
+  "resp_ip_bytes",
+  "tunnel_parents",
+  "orig_l2_addr",
+  "resp_l2_addr",
+  "vlan",
+  "inner_vlan"
 ]
 
+# https://www.zeek.org/sphinx/scripts/base/protocols/dns/main.bro.html#type-DNS::Info
 [events.bro_dns]
 fields = [
   "proto",
-  "query",
   "trans_id",
+  "rtt",
+  "query",
+  "qclass",
+  "qclass_name",
+  "qtype",
+  "qtype_name",
   "rcode",
   "rcode_name",
   "AA",
   "TC",
   "RD",
   "RA",
-  "Z"
+  "Z",
+  "answers",
+  "TTLs",
+  "rejected",
+  "total_answers",
+  "total_replies",
+  "saw_query",
+  "saw_reply",
+  "auth",
+  "addl"
 ]
 
-# [events.conn]
-# fields = [
-#   "proto",
-#   "conn_state",
-#   "local_orig",
-#   "local_resp",
-#   "missed_bytes",
-#   "history",
-#   "orig_pkts",
-#   "orig_ip_bytes",
-#   "resp_pkts",
-#   "resp_ip_bytes",
-#   "tunnel_parents"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/protocols/http/main.bro.html#type-HTTP::Info
+[events.bro_http]
+fields = [
+  "trans_depth",
+  "method",
+  "host",
+  "uri",
+  "referrer",
+  "version",
+  "user_agent",
+  "request_body_len",
+  "response_body_len",
+  "status_code",
+  "status_msg",
+  "info_code",
+  "info_msg",
+  "tags",
+  "username",
+  "password",
+  "capture_password",
+  "proxied",
+  "range_request",
+  "orig_fuids",
+  "orig_filenames",
+  "orig_mime_types",
+  "resp_fuids",
+  "resp_filenames",
+  "resp_mime_types",
+  "current_entity",
+  "orig_mime_depth",
+  "resp_mime_depth",
+  "client_header_names",
+  "server_header_names",
+  "omniture",
+  "flash_version",
+  "cookie_vars",
+  "uri_vars"
+]
 
+# https://www.zeek.org/sphinx/scripts/base/protocols/ssl/main.bro.html#type-SSL::Info
+[events.bro_ssl]
+fields = [
+  "id",
+  "version_num",
+  "version",
+  "cipher",
+  "curve",
+  "server_name",
+  "session_id",
+  "resumed",
+  "client_ticket_empty_session_seen",
+  "client_key_exchange_seen",
+  "server_appdata",
+  "client_appdata",
+  "last_alert",
+  "next_protocol",
+  "analyzer_id",
+  "established",
+  "logged",
+  "delay_tokens"
+]
 
-# [events.http]
-# fields = [
-#   "trans_depth",
-#   "version",
-#   "request_body_len",
-#   "response_body_len",
-#   "status_code",
-#   "status_msg",
-#   "tags",
-#   "resp_fuids",
-#   "resp_mime_types"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/protocols/rdp/main.bro.html#type-RDP::Info
+[events.bro_rdp]
+fields = [
+  "id",
+  "cookie",
+  "result",
+  "security_protocol",
+  "keyboard_layout",
+  "client_build",
+  "client_name",
+  "client_dig_product_id",
+  "desktop_width",
+  "desktop_height",
+  "requested_color_depth",
+  "cert_type",
+  "cert_count",
+  "cert_permanent",
+  "encryption_level",
+  "encryption_method",
+  "analyzer_id",
+  "done",
+  "ssl"
+]
 
-# name = "Bro events"
-# fields = [
-#   # Common Fields
-#   "ts",
-#   "uid",
-#   "destination_address",
-#   "destination_port",
-#   "source_address",
-#   "source_port"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/frameworks/notice/weird.bro.html#type-Weird::Info
+[events.bro_weird]
+fields = [
+  "id",
+  "conn",
+  "name",
+  "addl",
+  "notice",
+  "peer",
+  "identifier"
+]
 
-# [events.bro_conn]
-# fields = [
-#   "proto",
-#   "conn_state",
-#   "local_orig",
-#   "local_resp",
-#   "missed_bytes",
-#   "history",
-#   "orig_pkts",
-#   "orig_ip_bytes",
-#   "resp_pkts",
-#   "resp_ip_bytes",
-#   "tunnel_parents"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/files/x509/main.bro.html#type-X509::Info
+[events.bro_x509]
+fields = [
+  "id",
+  "certificate",
+  "handle",
+  "extensions",
+  "san",
+  "basic_constraints",
+  "logcert",
+  "certificate.version",
+  "certificate.serial",
+  "certificate.subject",
+  "certificate.issuer",
+  "certificate.not_valid_before",
+  "certificate.not_valid_after",
+  "certificate.key_alg",
+  "certificate.sig_alg",
+  "certificate.key_type",
+  "certificate.key_length",
+  "certificate.exponent",
+  "san.dns",
+  "basic_constraints.ca"
+]
 
-# [events.bro_dns]
-# fields = [
-#   "proto",
-#   "trans_id",
-#   "rcode",
-#   "rcode_name",
-#   "AA",
-#   "TC",
-#   "RD",
-#   "RA",
-#   "Z",
-#   "answers",
-#   "TTL",
-#   "rejected"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/frameworks/files/main.bro.html#type-Files::Info
+[events.bro_files]
+fields = [
+  "tx_hosts",
+  "rx_hosts",
+  "fuid",
+  "conn_uids",
+  "source",
+  "depth",
+  "analyzers",
+  "mime_type",
+  "filename",
+  "duration",
+  "local_orig",
+  "is_orig",
+  "seen_bytes",
+  "missing_bytes",
+  "overflow_bytes",
+  "timedout",
+  "parent_fuid",
+  "md5",
+  "sha1",
+  "sha256",
+  "x509",
+  "extracted",  
+  "extracted_cutoff",
+  "extracted_size",
+  "entropy"
+]
 
-# [events.bro_ssl]
-# fields = [
-#   "resumed",
-#   "established",
-#   "version",
-#   "cipher"
-# ]
-
-# [events.bro_http]
-# fields = [
-#   "trans_depth",
-#   "method",
-#   "host",
-#   "uri",
-#   "referrer",
-#   "version",
-#   "user_agent",
-#   "request_body_len",
-#   "response_body_len",
-#   "status_code",
-#   "status_msg",
-#   "info_msg",
-#   "tags",
-#   "username",
-#   "password",
-#   "capture_password",
-#   "proxied",
-#   "range_request",
-#   "orig_fuids",
-#   "orig_filenames",
-#   "orig_mime_types",
-#   "resp_filenames",
-#   "current_entity",
-#   "orig_mime_depth",
-#   "resp_mime_depth",
-#   "client_header_names",
-#   "server_header_names",
-#   "omniture",
-#   "flash_version",
-#   "cookie_vars",
-#   "uri_vars",
-#   "resp_fuids",
-#   "resp_mime_types"
-# ]
-
-
-# [events.bro_rdp]
-# fields = [
-#   "id",
-#   "cookie",
-#   "result",
-#   "security_protocol",
-#   "keyboard_layout",
-#   "client_build",
-#   "client_name",
-#   "client_dig_product_id",
-#   "desktop_width",
-#   "desktop_height",
-#   "requested_color_depth",
-#   "cert_type",
-#   "cert_count",
-#   "cert_permanent",
-#   "encryption_level",
-#   "encryption_method",
-#   "analyzer_id",
-#   "done",
-#   "ssl"
-# ]
-
-# [events.bro_weird]
-# fields = [
-#   "name",
-#   "notice",
-#   "peer"
-# ]
-
-# [events.bro_x509]
-# fields = [
-#   "id",
-#   "certificate.version",
-#   "certificate.serial",
-#   "certificate.subject",
-#   "certificate.issuer",
-#   "certificate.not_valid_before",
-#   "certificate.not_valid_after",
-#   "certificate.key_alg",
-#   "certificate.sig_alg",
-#   "certificate.key_type",
-#   "certificate.key_length",
-#   "certificate.exponent",
-#   "san.dns",
-#   "basic_constraints.ca"
-# ]
-
-# [events.bro_files]
-# fields = [
-#   "tx_hosts",
-#   "rx_hosts",
-#   "fuid",
-#   "conn_uids",
-#   "source",
-#   "depth",
-#   "analyzers",
-#   "mime_type",
-#   "duration",
-#   "local_orig",
-#   "is_orig",
-#   "seen_bytes",
-#   "missing_bytes",
-#   "overflow_bytes",
-#   "timedout",
-#   "md5",
-#   "sha1",
-#   "extracted_cutoff"
-# ]
-
-# [events.bro_ssh]
-# fields = [
-#   "version",
-#   "client"
-# ]
+# https://www.zeek.org/sphinx/scripts/base/protocols/ssh/main.bro.html#type-SSH::Info
+[events.bro_ssh]
+fields = [
+  "version",
+  "auth_success",
+  "auth_attempts",
+  "direction",
+  "client",
+  "server",
+  "cipher_alg",
+  "mac_alg",
+  "compression_alg",
+  "kex_alg",
+  "host_key_alg",
+  "host_key",
+  "analyzer_id",
+  "remote_location"
+]
