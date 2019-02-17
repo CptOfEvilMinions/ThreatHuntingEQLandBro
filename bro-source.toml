@@ -5,7 +5,8 @@ filter_query = true
 
 [timestamp]
 field = "ts"
-format = "%Y-%m-%d %H:%M:%S.%f"
+# JSON datetime format WITHOUT miliseconds
+format = "%Y-%m-%dT%H:%M:%Sz"
 
 [fields.mapping]
 ts = "ts"
@@ -63,7 +64,9 @@ http_cookie_vars = 'cookie_vars'
 http_uri_vars = 'uri_vars'
 http_mime_type = 'resp_mime_types'
 
-
+#######################################
+# SSL
+#######################################
 [events.bro_ssl]
 filter = 'cipher'
 
@@ -75,6 +78,9 @@ ssl_server_name = 'server_name'
 ssl_session_id = 'session_id'
 ssl_established = 'established'
 
+#######################################
+# RDP
+#######################################
 [events.bro_rdp]
 filter = 'keyboard_layout'
 
@@ -92,6 +98,9 @@ rdp_encryption_level = 'encryption_level'
 rdp_encryption_method = 'encryption_method'
 rdp_ssl = 'ssl'
 
+#######################################
+# Weird
+#######################################
 [events.bro_weird]
 filter = 'name'
 
@@ -101,6 +110,9 @@ weird_addl = 'addl'
 weird_peer = 'peer'
 weird_identifier = 'identifier'
 
+#######################################
+# x509
+#######################################
 [events.bro_x509]
 filter = 'certificate.serial'
 
@@ -111,6 +123,9 @@ x509_san = 'san'
 x509_basic_constraints = 'basic_constraints'
 x509_logcert = 'logcert'
 
+#######################################
+# Files
+#######################################
 [events.bro_files]
 filter = 'mime_type'
 
@@ -127,6 +142,9 @@ files_sha1 = 'sha1'
 files_sha256 = 'sha256'
 files_x509 = 'x509'
 
+#######################################
+# SSH
+#######################################
 [events.bro_ssh]
 filter = 'auth_success'
 
