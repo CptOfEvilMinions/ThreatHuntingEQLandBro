@@ -65,6 +65,29 @@ http_uri_vars = 'uri_vars'
 http_mime_type = 'resp_mime_types'
 
 #######################################
+# SMB drive mappings
+#######################################
+[events.bro_smb_mapping]
+filter = 'share_type'
+
+[events.bro_smb_mapping.mapping]
+smb_mapping_path = 'path'
+smb_mapping_service = 'service'
+smb_mapping_share_type = 'share_type'
+smb_mapping_native_file_system = 'native_file_system'
+
+#######################################
+# SMB file transfters
+#######################################
+[events.bro_smb_files]
+filter = 'action'
+
+[events.bro_smb_files.mapping]
+smb_files_action = 'action'
+smb_files_name = 'name'
+smb_files_size = 'size'
+
+#######################################
 # SSL
 #######################################
 [events.bro_ssl]
@@ -162,28 +185,3 @@ ssh_kex_alg = 'kex_alg'
 ssh_host_key_alg = 'host_key_alg'
 ssh_host_key = 'host_key'
 
-#######################################
-# SMB mapping
-#######################################
-[events.bro_smb_mapping]
-filter = 'share_type'
-
-[events.bro_smb_mapping.mapping]
-smb_path = 'path'
-smb_service = 'service'
-smb_share_type = 'share_type'
-
-#######################################
-# SMB mapping
-#######################################
-[events.bro_smb_files]
-filter = 'action'
-
-[events.bro_smb_files.mapping]
-smb_action = 'action'
-smb_name = 'name'
-smb_size = 'size'
-smb_times_modified = 'times_modified'
-smb_times_accessed = 'times_accessed'
-smb_times_created = 'times_created'
-smb_times_changed = 'times_changed'

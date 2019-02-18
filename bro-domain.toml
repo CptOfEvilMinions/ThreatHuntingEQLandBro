@@ -225,20 +225,17 @@ fields = [
   "ssh_remote_location"
 ]
 
-[events.bro_smb_files]
-fields = [
-  "smb_action",
-  "smb_name",
-  "smb_size",
-  "smb_times_modified",
-  "smb_times_accessed",
-  "smb_times_created",
-  "smb_times_changed"
-]
-
 [events.bro_smb_mapping]
 fields = [
-  "smb_path",
-  "smb_service",
-  "smb_share_type"
+  "smb_mapping_path",
+  "smb_mapping_service",
+  "smb_mapping_share_type",
+  "smb_mapping_native_file_system"
+]
+
+[events.bro_smb_files]
+fields = [
+  "smb_files_action",
+  "smb_files_name",
+  "smb_files_size"
 ]

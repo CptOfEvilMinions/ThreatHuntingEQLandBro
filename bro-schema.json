@@ -16,7 +16,7 @@
     "bro_x509",
     "bro_files",
     "bro_ssh",
-    "bro_smb_mapping",
-    "bro_smb_files"
+    "bro_smb_files",
+    "bro_smb_mapping"
   ]
 }
