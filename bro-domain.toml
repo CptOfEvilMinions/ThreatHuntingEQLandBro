@@ -236,7 +236,7 @@ fields = [
   "smb_times_changed"
 ]
 
-[events.bro_smb_share]
+[events.bro_smb_mapping]
 fields = [
   "smb_path",
   "smb_service",

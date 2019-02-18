@@ -165,10 +165,10 @@ ssh_host_key = 'host_key'
 #######################################
 # SMB mapping
 #######################################
-[events.bro_smb_share]
+[events.bro_smb_mapping]
 filter = 'share_type'
 
-[events.bro_smb_share.mapping]
+[events.bro_smb_mapping.mapping]
 smb_path = 'path'
 smb_service = 'service'
 smb_share_type = 'share_type'
