@@ -1,6 +1,6 @@
 # ThreatHuntingEQLandBro
 
-## Install/Setup EQL and EQLLUB
+## Install/Setup EQL and EQLLIB
 
 ## EQL
 
